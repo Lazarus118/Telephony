@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Telephony</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="select_category">Select Category</string>
+    <string name="search_list">Search List</string>
+    <string name="personal_details">Personal Details</string>
+    <string name="text_chat">Text Chat</string>
+    <string name="video_chat">Video Chat</string>
+    <string name="send_sms">Send SMS</string>
+    <string name="send_mail">SEND EMAIL</string>
+    <string name="search_button">SEARCH</string>
+    <string name="text_chatting">TEXT CHAT</string>
+    <string name="chat_submit">SEND</string>
+    <string name="go_back">GO BACK</string>
+    <string name="video_chatting">VIDEO CHAT</string>
+    <string name="mail_sending">MAIL SENDING</string>
+    <string name="sms_sending">SMS SENDING</string>
+    <string name="mail_button">SEND EMAIL</string>
+    <string name="sms_button">SEND SMS</string>
+</resources>
