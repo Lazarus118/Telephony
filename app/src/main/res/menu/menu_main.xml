@@ -1,0 +1,36 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".MainActivity">
+
+    <item android:id="@+id/home"
+          android:title="Home"
+          android:orderInCategory="100"
+          app:showAsAction="never"/>
+
+    <item android:id="@+id/login"
+        android:title="Text Chat"
+        android:orderInCategory="200"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/video"
+        android:title="Video Chat"
+        android:orderInCategory="300"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/sms"
+        android:title="Send SMS"
+        android:orderInCategory="400"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/email"
+        android:title="Send Email"
+        android:orderInCategory="500"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_leave"
+        android:title="Leave"
+        android:orderInCategory="600"
+        app:showAsAction="never"/>
+
+</menu>

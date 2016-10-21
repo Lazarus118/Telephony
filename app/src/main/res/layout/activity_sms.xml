@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:elevation="1dp"
+        android:background="#eee">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/name_to_sms"
+            android:hint="Name:"
+            android:backgroundTint="#ddd" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/number_to_sms"
+            android:hint="Number:"
+            android:backgroundTint="#ddd"
+            android:gravity="bottom" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.50"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/sms_body"
+            android:layout_weight="0.99"
+            android:hint="Type a message ..."
+            android:textAlignment="center"
+            android:gravity="bottom|center_vertical" />
+
+        <Button
+            android:text="SEND SMS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/send_sms_to" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3.5">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:gravity="bottom"
+            android:id="@+id/personal_details_btn_bg"
+            android:background="#F7CA18">
+
+
+            <ImageButton
+                android:src="@android:drawable/stat_notify_chat"
+                android:text="TEXT CHAT"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/text_chat"
+                android:layout_weight="1"
+                android:background="#F7CA18" />
+
+            <ImageButton
+                android:src="@android:drawable/ic_media_play"
+                android:text="VIDEO CHAT"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/video_chat"
+                android:layout_weight="1"
+                android:background="#F7CA18" />
+
+            <ImageButton
+                android:src="@android:drawable/sym_action_chat"
+                android:text="SEND SMS"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/send_sms"
+                android:layout_weight="1"
+                android:background="#F7CA18" />
+
+            <ImageButton
+                android:src="@android:drawable/ic_dialog_email"
+                android:text="SEND EMAIL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/send_email"
+                android:layout_weight="1"
+                android:background="#F7CA18" />
+
+            <ImageButton
+                android:src="@android:drawable/ic_menu_search"
+                android:text="SEARCH"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/search"
+                android:layout_weight="1"
+                android:background="#F7CA18" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

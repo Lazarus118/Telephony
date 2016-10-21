@@ -1,15 +1,26 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.2.3'
+    }
+}
 apply plugin: 'com.android.application'
 
+repositories {
+    jcenter()
+}
+
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
     defaultConfig {
-        applicationId "co.aulatech.telephony"
+        applicationId 'co.aulatech'
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -17,14 +28,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    testCompile 'junit:junit:4.12'
-    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+    compile 'com.android.support:appcompat-v7:21.0.+'
+    compile 'com.android.support:recyclerview-v7:21.0.+'
+    compile ('io.socket:socket.io-client:0.8.1') {
+        exclude group: 'org.json', module: 'json'
+    }
 }
