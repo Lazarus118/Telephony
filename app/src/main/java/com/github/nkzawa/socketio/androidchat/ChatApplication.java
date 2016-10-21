@@ -9,7 +9,8 @@ public class ChatApplication extends Application {
 
     private Socket mSocket;
     {
-        try {
+        try
+        {
             mSocket = IO.socket(Constants.CHAT_SERVER_URL);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
