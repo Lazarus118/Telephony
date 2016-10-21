@@ -56,6 +56,11 @@
             android:label="@string/app_name"
             android:icon="@drawable/ic_launcher" >
         </activity>
+        <activity
+            android:name="com.github.nkzawa.socketio.androidchat.EmailClass"
+            android:label="@string/app_name"
+            android:icon="@drawable/ic_launcher" >
+        </activity>
     </application>
 
 </manifest>

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class PersonalClass extends ActionBarActivity {
     TextView name;
-    ImageButton text_chat, video_chat, search, sms_btn;
+    ImageButton text_chat, video_chat, search, sms_btn, email_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,15 @@ public class PersonalClass extends ActionBarActivity {
             public void onClick(View view) {
                 Intent search = new Intent(PersonalClass.this, SmsClass.class);
                 PersonalClass.this.startActivity(search);
+            }
+        });
+        // ------------------------------------ //
+        email_btn = (ImageButton)findViewById(R.id.send_email);
+        email_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent email = new Intent(PersonalClass.this, EmailClass.class);
+                PersonalClass.this.startActivity(email);
             }
         });
         // ------------------------------------ //
