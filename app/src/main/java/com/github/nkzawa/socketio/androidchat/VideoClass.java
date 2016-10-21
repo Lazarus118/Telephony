@@ -1,17 +1,19 @@
 package com.github.nkzawa.socketio.androidchat;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.MediaController;
 import android.widget.VideoView;
+
 
 public class VideoClass extends ActionBarActivity {
     ImageButton video_chat, search, video_list;
     VideoView vv;
     static final int REQUEST_VIDEO_CAPTURE = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,7 @@ public class VideoClass extends ActionBarActivity {
     }
 
     // RECORD VIDEO METHOD
-    // ----------------------------------- //
+    // -----------------------------------
     private void dispatchTakeVideoIntent()
     {
         Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
@@ -59,19 +61,15 @@ public class VideoClass extends ActionBarActivity {
     }
 
     // VIEW VIDEO METHOD
-    // ----------------------------------- //
+    // -----------------------------------
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent)
     {
         vv = (VideoView)findViewById(R.id.videoView);
-        if (requestCode == REQUEST_VIDEO_CAPTURE && requestCode == RESULT_OK)
-        {
-            String path = data.getData().toString();
-            vv.setMediaController(new MediaController(VideoClass.this));
-            vv.setVideoPath(path);
-            vv.start();
-            vv.requestFocus();
+        if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
+            Uri videoUri = intent.getData();
+            vv.setVideoURI(videoUri);
         }
-        super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, intent);
     }
 }
