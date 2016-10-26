@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "contacts.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     public static final String TABLE_NAME = "contacts";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "name";
@@ -19,6 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public  static final String COLUMN_WEBSITE = "website";
     public static final String COLUMN_QUALIFICATIONS = "qualifications";
     public static final String COLUMN_DETAILS = "details";
+    public static final String COLUMN_CATEGORY ="category";
 
     /****************************************************************
      * DATABASE INITIALIZATION W/ NAME AND VERSION NUMBER
@@ -36,7 +37,8 @@ public class DBHelper extends SQLiteOpenHelper {
                    COLUMN_EMAIL + " TEXT, " +
                    COLUMN_WEBSITE + " TEXT, " +
                    COLUMN_QUALIFICATIONS + " TEXT, " +
-                   COLUMN_DETAILS + " TEXT)" ); }
+                   COLUMN_DETAILS + " TEXT, " +
+                   COLUMN_CATEGORY + " TEXT)" ); }
     /****************************************************************
      * UPGRADE RECORD
      ***************************************************************/
@@ -47,7 +49,7 @@ public class DBHelper extends SQLiteOpenHelper {
     /****************************************************************
      * INSERT
      ***************************************************************/
-    public boolean insert(String name, int number, String email, String website, String qualifications, String details) {
+    public boolean insert(String name, int number, String email, String website, String qualifications, String details, String category) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_NAME, name);
@@ -56,6 +58,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_WEBSITE, website);
         contentValues.put(COLUMN_QUALIFICATIONS, qualifications);
         contentValues.put(COLUMN_DETAILS, details);
+        contentValues.put(COLUMN_CATEGORY, category);
         db.insert(TABLE_NAME, null, contentValues);
         return true; }
     /****************************************************************
@@ -68,7 +71,7 @@ public class DBHelper extends SQLiteOpenHelper {
     /****************************************************************
      * INSERT
      ***************************************************************/
-    public boolean update(Integer id, String name, int number, String email, String website, String qualifications, String details) {
+    public boolean update(Integer id, String name, int number, String email, String website, String qualifications, String details, String category) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_NAME, name);
@@ -77,6 +80,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_WEBSITE, website);
         contentValues.put(COLUMN_QUALIFICATIONS, qualifications);
         contentValues.put(COLUMN_DETAILS, details);
+        contentValues.put(COLUMN_CATEGORY, category);
         db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ? ", new String[] { Integer.toString(id) } );
         return true; }
     /****************************************************************

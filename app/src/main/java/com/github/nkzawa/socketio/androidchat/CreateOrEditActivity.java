@@ -15,7 +15,7 @@ public class CreateOrEditActivity extends ActionBarActivity implements View.OnCl
 
 
     private DBHelper dbHelper;
-    EditText name, number, email, website, qualifications, details;
+    EditText name, number, email, website, qualifications, details, category;
     ImageButton saveButton, editButton, deleteButton;
     int personID;
 
@@ -31,6 +31,7 @@ public class CreateOrEditActivity extends ActionBarActivity implements View.OnCl
         website = (EditText)findViewById(R.id.edit_website);
         qualifications = (EditText)findViewById(R.id.edit_qualifications);
         details = (EditText)findViewById(R.id.edit_details);
+        category = (EditText)findViewById(R.id.edit_category);
         saveButton = (ImageButton)findViewById(R.id.save_btn);
         saveButton.setOnClickListener(this);
         editButton = (ImageButton)findViewById(R.id.edit_btn);
@@ -50,6 +51,7 @@ public class CreateOrEditActivity extends ActionBarActivity implements View.OnCl
             String personWebsite = rs.getString(rs.getColumnIndex(DBHelper.COLUMN_WEBSITE));
             String personQualification = rs.getString(rs.getColumnIndex(DBHelper.COLUMN_QUALIFICATIONS));
             String personDetails = rs.getString(rs.getColumnIndex(DBHelper.COLUMN_DETAILS));
+            String personCategory = rs.getString(rs.getColumnIndex(DBHelper.COLUMN_CATEGORY));
             if (!rs.isClosed()) {
                 rs.close();
             }
@@ -60,6 +62,7 @@ public class CreateOrEditActivity extends ActionBarActivity implements View.OnCl
             website.setText(personWebsite + "");
             qualifications.setText(personQualification + "");
             details.setText(personDetails + "");
+            category.setText(personCategory + "");
         }
     }
 
@@ -110,7 +113,7 @@ public class CreateOrEditActivity extends ActionBarActivity implements View.OnCl
     public void persistPerson() {
         if(personID > 0)
         {
-            if (dbHelper.update(personID, name.getText().toString(), Integer.parseInt(number.getText().toString()), email.getText().toString(), website.getText().toString(), qualifications.getText().toString(), details.getText().toString()))
+            if (dbHelper.update(personID, name.getText().toString(), Integer.parseInt(number.getText().toString()), email.getText().toString(), website.getText().toString(), qualifications.getText().toString(), details.getText().toString(), category.getText().toString()))
             {
                 Toast.makeText(getApplicationContext(), "Person Update Successful", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -125,7 +128,7 @@ public class CreateOrEditActivity extends ActionBarActivity implements View.OnCl
 
         else
         {
-            if(dbHelper.insert(name.getText().toString(), Integer.parseInt(number.getText().toString()), email.getText().toString(), website.getText().toString(), qualifications.getText().toString(), details.getText().toString()))
+            if(dbHelper.insert(name.getText().toString(), Integer.parseInt(number.getText().toString()), email.getText().toString(), website.getText().toString(), qualifications.getText().toString(), details.getText().toString(), category.getText().toString()))
             {
                 Toast.makeText(getApplicationContext(), "Person Inserted", Toast.LENGTH_SHORT).show();
             }
