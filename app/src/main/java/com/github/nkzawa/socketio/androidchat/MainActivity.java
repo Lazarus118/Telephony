@@ -48,20 +48,20 @@ public class MainActivity extends ActionBarActivity {
                 DBHelper.COLUMN_DETAILS
         };
 
-        SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(this, R.layout.activity_main, cursor, columns, null, 0);
-        listView = (ListView)findViewById(R.id.main_list);
-        listView.setAdapter(cursorAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
-                Cursor itemCursor = (Cursor) MainActivity.this.listView.getItemAtPosition(position);
-                int personID = itemCursor.getInt(itemCursor.getColumnIndex(DBHelper.COLUMN_ID));
-                Intent intent = new Intent(getApplicationContext(), CreateOrEditActivity.class);
-                intent.putExtra(KEY_EXTRA_CONTACT_ID, personID);
-                startActivity(intent);
-            }
-        });
+//        SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(this, R.layout.activity_main, cursor, columns, null, 0);
+//        listView = (ListView)findViewById(R.id.main_list);
+//        listView.setAdapter(cursorAdapter);
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
+//                Cursor itemCursor = (Cursor) MainActivity.this.listView.getItemAtPosition(position);
+//                int personID = itemCursor.getInt(itemCursor.getColumnIndex(DBHelper.COLUMN_ID));
+//                Intent intent = new Intent(getApplicationContext(), CreateOrEditActivity.class);
+//                intent.putExtra(KEY_EXTRA_CONTACT_ID, personID);
+//                startActivity(intent);
+//            }
+//        });
 
 
         /***********************************************
