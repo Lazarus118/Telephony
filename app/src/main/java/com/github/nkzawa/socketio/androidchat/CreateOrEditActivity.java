@@ -6,10 +6,8 @@ import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -27,17 +25,14 @@ public class CreateOrEditActivity extends ActionBarActivity implements View.OnCl
         personID = getIntent().getIntExtra(MainActivity.KEY_EXTRA_CONTACT_ID, 0);
         setContentView(R.layout.create_contact);
 
-        // setContentView(R.layout.activity_edit);
         name = (EditText)findViewById(R.id.edit_name);
         number = (EditText)findViewById(R.id.edit_number);
         email = (EditText)findViewById(R.id.edit_email);
         website = (EditText)findViewById(R.id.edit_website);
         qualifications = (EditText)findViewById(R.id.edit_qualifications);
         details = (EditText)findViewById(R.id.edit_details);
-
         saveButton = (ImageButton)findViewById(R.id.save_btn);
         saveButton.setOnClickListener(this);
-        // buttonLayout = (LinearLayout) findViewById(R.id.buttonLayout);
         editButton = (ImageButton)findViewById(R.id.edit_btn);
         editButton.setOnClickListener(this);
         deleteButton = (ImageButton)findViewById(R.id.delete_btn);
@@ -46,8 +41,6 @@ public class CreateOrEditActivity extends ActionBarActivity implements View.OnCl
         dbHelper = new DBHelper(this);
 
         if (personID > 0) {
-            // saveButton.setVisibility(View.GONE);
-            // buttonLayout.setVisibility(View.VISIBLE);
 
             Cursor rs = dbHelper.getRecord(personID);
             rs.moveToFirst();
@@ -61,12 +54,12 @@ public class CreateOrEditActivity extends ActionBarActivity implements View.OnCl
                 rs.close();
             }
 
-            name.setText(personName);
+            name.setText(personName + "");
             number.setText(personNumber + "");
-            email.setText(personEmail);
-            website.setText(personWebsite);
-            qualifications.setText(personQualification);
-            details.setText(personDetails);
+            email.setText(personEmail + "");
+            website.setText(personWebsite + "");
+            qualifications.setText(personQualification + "");
+            details.setText(personDetails + "");
         }
     }
 

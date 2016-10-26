@@ -7,7 +7,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ExpandableListView;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +19,8 @@ import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
     public final static String KEY_EXTRA_CONTACT_ID = "KEY_EXTRA_CONTACT_ID";
+    DBHelper dbHelper;
+    private ListView listView;
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;
@@ -30,6 +35,33 @@ public class MainActivity extends ActionBarActivity {
         /***********************************************
          *  DATABASE INIT
          ***********************************************/
+        dbHelper = new DBHelper(this);
+
+        final Cursor cursor = dbHelper.getAllRecords();
+        String [] columns = new String[] {
+                DBHelper.COLUMN_ID,
+                DBHelper.COLUMN_NAME,
+                DBHelper.COLUMN_NUMBER,
+                DBHelper.COLUMN_EMAIL,
+                DBHelper.COLUMN_WEBSITE,
+                DBHelper.COLUMN_QUALIFICATIONS,
+                DBHelper.COLUMN_DETAILS
+        };
+
+        SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(this, R.layout.activity_main, cursor, columns, null, 0);
+        listView = (ListView)findViewById(R.id.main_list);
+        listView.setAdapter(cursorAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
+                Cursor itemCursor = (Cursor) MainActivity.this.listView.getItemAtPosition(position);
+                int personID = itemCursor.getInt(itemCursor.getColumnIndex(DBHelper.COLUMN_ID));
+                Intent intent = new Intent(getApplicationContext(), CreateOrEditActivity.class);
+                intent.putExtra(KEY_EXTRA_CONTACT_ID, personID);
+                startActivity(intent);
+            }
+        });
 
 
         /***********************************************

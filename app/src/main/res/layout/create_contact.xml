@@ -198,6 +198,7 @@
             android:layout_weight="8"
             android:gravity="bottom"
             android:id="@+id/personal_details_btn_bg"
+            android:layout_alignParentBottom="true"
             android:background="#F7CA18">
 
 
