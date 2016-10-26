@@ -1,6 +1,7 @@
 package com.github.nkzawa.socketio.androidchat;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.github.nkzawa.socketio.androidchat.DatabaseHelpler.TABLE_NAME;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -19,12 +22,24 @@ public class MainActivity extends ActionBarActivity {
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
+    DatabaseHelpler myDb;
     String austin = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /***********************************************
+         *  DATABASE INIT
+         ***********************************************/
+        myDb = new DatabaseHelpler(this);
+        Cursor myContacts = myDb.getCategories();
+
+//        while(myContacts.moveToNext())
+//        {
+//            String contacts = myContacts.getString(0);
+//        }
 
         /***********************************************
          *  EXPANDABLE VIEW W/ SELECT CATEGORY
@@ -50,7 +65,6 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                // TODO Auto-generated method stub
                 Toast.makeText(
                         getApplicationContext(),
                         listDataHeader.get(groupPosition)
