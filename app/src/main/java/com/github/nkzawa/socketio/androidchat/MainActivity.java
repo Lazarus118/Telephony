@@ -34,6 +34,10 @@ public class MainActivity extends ActionBarActivity {
          *  DATABASE INIT
          ***********************************************/
         myDb = new DatabaseHelpler(this);
+        String sql = "INSERT or replace INTO contacts_table" +
+                     "(category, name, mobileNo, email, website, qualification, details)" +
+                     "VALUES('friends','Austin Lazarus','7676144347','austin.lazarus@gmail.com','www.aulatech.co','n/a','n/a')";
+        myDb.insertData(TABLE_NAME, null, sql);
         Cursor myContacts = myDb.getCategories();
 
 //        while(myContacts.moveToNext())
