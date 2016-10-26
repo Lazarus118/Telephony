@@ -31,6 +31,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.github.nkzawa.socketio.androidchat.CreateOrEditActivity"
+            android:label="@string/add_new_contact"
+            android:icon="@drawable/ic_launcher"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+        </activity>
+        <activity
             android:name="com.github.nkzawa.socketio.androidchat.LoginActivity"
             android:label="@string/app_name"
             android:icon="@drawable/ic_launcher"

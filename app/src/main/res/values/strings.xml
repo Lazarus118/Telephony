@@ -26,5 +26,10 @@
     <string name="send_email">Send Email</string>
     <string name="video_chat">Video Chat</string>
     <string name="search">Communication App__Search</string>
+    <string name="add_new_contact">New Contact</string>
 
+    <!-- Delete Person -->
+    <string name="deletePerson">Delete Person</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

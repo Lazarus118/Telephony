@@ -13,16 +13,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.github.nkzawa.socketio.androidchat.DatabaseHelpler.TABLE_NAME;
-
 
 public class MainActivity extends ActionBarActivity {
-
+    public final static String KEY_EXTRA_CONTACT_ID = "KEY_EXTRA_CONTACT_ID";
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
-    DatabaseHelpler myDb;
     String austin = "";
 
     @Override
@@ -33,17 +30,7 @@ public class MainActivity extends ActionBarActivity {
         /***********************************************
          *  DATABASE INIT
          ***********************************************/
-        myDb = new DatabaseHelpler(this);
-        String sql = "INSERT or replace INTO contacts_table" +
-                     "(category, name, mobileNo, email, website, qualification, details)" +
-                     "VALUES('friends','Austin Lazarus','7676144347','austin.lazarus@gmail.com','www.aulatech.co','n/a','n/a')";
-        myDb.insertData(TABLE_NAME, null, sql);
-        Cursor myContacts = myDb.getCategories();
 
-//        while(myContacts.moveToNext())
-//        {
-//            String contacts = myContacts.getString(0);
-//        }
 
         /***********************************************
          *  EXPANDABLE VIEW W/ SELECT CATEGORY
@@ -52,7 +39,6 @@ public class MainActivity extends ActionBarActivity {
         prepareListData(); // preparing list data
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter); // setting list adapter
-
         expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() { // Listview Group click listener
 
             @Override
@@ -60,10 +46,10 @@ public class MainActivity extends ActionBarActivity {
                 return false;
             }
         });
-        // ----------------------------------------------- //
-        /*
-         *  Listview on child click listener
-         */
+
+        /***********************************************
+         *  LISTVIEW ON CHILD CLICK LISTERNER
+         ***********************************************/
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 
             @Override
@@ -87,10 +73,10 @@ public class MainActivity extends ActionBarActivity {
             }
         });
     }
-    // ----------------------------------------------- //
-    /*
-     * Preparing the list data
-     */
+
+    /***********************************************
+     *  PRRPARING THE LIST DATA
+     ***********************************************/
     private void prepareListData() {
         // Global String variables
         austin = "Austin Lazarus";
@@ -145,6 +131,11 @@ public class MainActivity extends ActionBarActivity {
             case R.id.sms:
                 Intent sms = new Intent(MainActivity.this, SmsClass.class);
                 MainActivity.this.startActivity(sms);
+                return true;
+            case R.id.new_contact:
+                Intent contact = new Intent(MainActivity.this, CreateOrEditActivity.class);
+                contact.putExtra(KEY_EXTRA_CONTACT_ID, 0);
+                MainActivity.this.startActivity(contact);
                 return true;
         }
         return super.onOptionsItemSelected(item);
