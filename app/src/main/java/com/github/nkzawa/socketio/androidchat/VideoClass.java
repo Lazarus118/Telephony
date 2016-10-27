@@ -69,6 +69,7 @@ public class VideoClass extends ActionBarActivity {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             Uri videoUri = intent.getData();
             vv.setVideoURI(videoUri);
+            vv.start();
         }
         super.onActivityResult(requestCode, resultCode, intent);
     }

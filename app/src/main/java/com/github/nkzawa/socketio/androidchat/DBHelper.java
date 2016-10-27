@@ -16,7 +16,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_NUMBER = "number";
     public static final String COLUMN_EMAIL = "email";
-    public  static final String COLUMN_WEBSITE = "website";
+    public static final String COLUMN_WEBSITE = "website";
     public static final String COLUMN_QUALIFICATIONS = "qualifications";
     public static final String COLUMN_DETAILS = "details";
     public static final String COLUMN_CATEGORY ="category";

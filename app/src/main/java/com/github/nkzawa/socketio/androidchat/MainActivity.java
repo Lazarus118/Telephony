@@ -7,10 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,12 +17,12 @@ import java.util.List;
 public class MainActivity extends ActionBarActivity {
     public final static String KEY_EXTRA_CONTACT_ID = "KEY_EXTRA_CONTACT_ID";
     DBHelper dbHelper;
-    private ListView listView;
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
-    String austin = "";
+    public static String name;
+    public static String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,22 +35,23 @@ public class MainActivity extends ActionBarActivity {
         dbHelper = new DBHelper(this);
 
         final Cursor cursor = dbHelper.getAllRecords();
-        String [] columns = new String[] {
-                DBHelper.COLUMN_ID,
-                DBHelper.COLUMN_NAME,
-                DBHelper.COLUMN_NUMBER,
-                DBHelper.COLUMN_EMAIL,
-                DBHelper.COLUMN_WEBSITE,
-                DBHelper.COLUMN_QUALIFICATIONS,
-                DBHelper.COLUMN_DETAILS
-        };
+//        String [] columns = new String[] {
+//                DBHelper.COLUMN_ID,
+//                DBHelper.COLUMN_NAME,
+//                DBHelper.COLUMN_NUMBER,
+//                DBHelper.COLUMN_EMAIL,
+//                DBHelper.COLUMN_WEBSITE,
+//                DBHelper.COLUMN_QUALIFICATIONS,
+//                DBHelper.COLUMN_DETAILS
+//        };
 
-        String data = "";
-        while(cursor.moveToNext()){
-            data = cursor.getString(4);
+        final String finalName = name;
+        final String finalCategory = category;
+        while(cursor.moveToNext()) {
+            name = cursor.getString(1);
+            category = cursor.getString(7);
         }
 
-        Toast.makeText(getApplicationContext(), ""+ data +"", Toast.LENGTH_LONG).show();
 
 
         /***********************************************
@@ -89,8 +87,7 @@ public class MainActivity extends ActionBarActivity {
                         .show();
                 // PersonalDetails view
                 Intent intent = new Intent(MainActivity.this, PersonalClass.class);
-                String values = austin;
-                intent.putExtra("Austin", values); //Optional parameters
+                intent.putExtra("Austin", finalName); //Optional parameters
                 MainActivity.this.startActivity(intent);
 
                 return false;
@@ -103,22 +100,21 @@ public class MainActivity extends ActionBarActivity {
      ***********************************************/
     private void prepareListData() {
         // Global String variables
-        austin = "Austin Lazarus";
 
         listDataHeader = new ArrayList<>();
         listDataChild = new HashMap<>();
 
         // Adding child data
-        listDataHeader.add("Friends");
+        listDataHeader.add(category);
         listDataHeader.add("Relatives");
         listDataHeader.add("Others");
 
         // Adding child data
         List<String> friends = new ArrayList<>();
+        friends.add(name);
         friends.add("Tukaram Bhagat");
         friends.add("Craig Nesty");
         friends.add("Veronne Nicholas");
-        friends.add(austin);
         friends.add("Timothy Tavanier");
         friends.add("Al Parillon");
         friends.add("Chester Wyke");
