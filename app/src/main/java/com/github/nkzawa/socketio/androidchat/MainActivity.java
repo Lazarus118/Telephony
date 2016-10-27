@@ -33,26 +33,13 @@ public class MainActivity extends ActionBarActivity {
          *  DATABASE INIT
          ***********************************************/
         dbHelper = new DBHelper(this);
-
         final Cursor cursor = dbHelper.getAllRecords();
-//        String [] columns = new String[] {
-//                DBHelper.COLUMN_ID,
-//                DBHelper.COLUMN_NAME,
-//                DBHelper.COLUMN_NUMBER,
-//                DBHelper.COLUMN_EMAIL,
-//                DBHelper.COLUMN_WEBSITE,
-//                DBHelper.COLUMN_QUALIFICATIONS,
-//                DBHelper.COLUMN_DETAILS
-//        };
-
         final String finalName = name;
         final String finalCategory = category;
         while(cursor.moveToNext()) {
             name = cursor.getString(1);
             category = cursor.getString(7);
         }
-
-
 
         /***********************************************
          *  EXPANDABLE VIEW W/ SELECT CATEGORY
@@ -87,7 +74,7 @@ public class MainActivity extends ActionBarActivity {
                         .show();
                 // PersonalDetails view
                 Intent intent = new Intent(MainActivity.this, PersonalClass.class);
-                intent.putExtra("Austin", finalName); //Optional parameters
+                intent.putExtra("Austin", name); //Optional parameters
                 MainActivity.this.startActivity(intent);
 
                 return false;
@@ -111,14 +98,17 @@ public class MainActivity extends ActionBarActivity {
 
         // Adding child data
         List<String> friends = new ArrayList<>();
-        friends.add(name);
-        friends.add("Tukaram Bhagat");
-        friends.add("Craig Nesty");
-        friends.add("Veronne Nicholas");
-        friends.add("Timothy Tavanier");
-        friends.add("Al Parillon");
-        friends.add("Chester Wyke");
-        friends.add("Kerry");
+
+        for (int i = 0; i < name.length(); i++) {
+            friends.add(name);
+        }
+//        friends.add("Tukaram Bhagat");
+//        friends.add("Craig Nesty");
+//        friends.add("Veronne Nicholas");
+//        friends.add("Timothy Tavanier");
+//        friends.add("Al Parillon");
+//        friends.add("Chester Wyke");
+//        friends.add("Kerry");
 
         List<String> relatives = new ArrayList<>();
         relatives.add("...");

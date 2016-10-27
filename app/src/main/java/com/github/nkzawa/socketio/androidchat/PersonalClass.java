@@ -1,15 +1,20 @@
 package com.github.nkzawa.socketio.androidchat;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 
 public class PersonalClass extends ActionBarActivity {
-    TextView name;
+    TextView name, mobile_number, email, website, qualification, details;
     ImageButton text_chat, video_chat, search, sms_btn, email_btn;
+    DBHelper dbHelper;
+    public static String DBname, DBnum, DBemail, DBwebsite, DBqualification, DBdetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +24,35 @@ public class PersonalClass extends ActionBarActivity {
         String value = intent.getStringExtra("Austin");
         name = (TextView)findViewById(R.id.name);
         name.setText(value);
+        // ------------------------------------ //
+        dbHelper = new DBHelper(this);
+        final Cursor cursor = dbHelper.getAllRecords();
+        final String finalName = DBname;
+        final String finalNum = DBnum;
+        final String finalEmail = DBemail;
+        final String finalWebsite = DBwebsite;
+        final String finalQualification = DBqualification;
+        final String finalDetails = DBdetails;
+        while(cursor.moveToNext()) {
+            DBname = cursor.getString(1);
+            DBnum = cursor.getString(2);
+            DBemail = cursor.getString(3);
+            DBwebsite = cursor.getString(4);
+            DBqualification = cursor.getString(5);
+            DBdetails = cursor.getString(6);
+        }
+        mobile_number = (TextView)findViewById(R.id.mobile_number);
+        email = (TextView)findViewById(R.id.email);
+        website = (TextView)findViewById(R.id.website);
+        qualification = (TextView)findViewById(R.id.qualification);
+        details = (TextView)findViewById(R.id.details);
+        if (Objects.equals(value, DBname)) {
+            mobile_number.setText(DBnum);
+            email.setText(DBemail);
+            website.setText(DBwebsite);
+            qualification.setText(DBqualification);
+            details.setText(DBdetails);
+        }
         // ------------------------------------ //
         text_chat = (ImageButton)findViewById(R.id.text_chat);
         text_chat.setOnClickListener(new View.OnClickListener() {
