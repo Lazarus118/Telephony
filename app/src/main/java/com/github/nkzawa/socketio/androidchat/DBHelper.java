@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import java.util.ArrayList;
+
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -95,6 +97,14 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getRecord(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + "=?", new String[]{Integer.toString(id)});
+        return res; }
+    /****************************************************************
+     * GET PERSON RECORD
+     ***************************************************************/
+    public Cursor getPersonRecord(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String> contacts = new ArrayList<String>();
+        Cursor res =  db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE name =?",new String[]{name});//
         return res; }
     /****************************************************************
      * GET ALL RECORD

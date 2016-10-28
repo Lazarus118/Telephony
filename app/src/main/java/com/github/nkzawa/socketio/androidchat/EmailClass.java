@@ -19,6 +19,7 @@ public class EmailClass extends ActionBarActivity {
         // ---------------------------------- //
         email_send_btn = (Button)findViewById(R.id.email_to);
         email_to = (EditText)findViewById(R.id.email_address);
+        email_to.setText("austin.lazarus@gmail.com");
         email_cc = (EditText)findViewById(R.id.email_cc);
         email_bcc = (EditText)findViewById(R.id.email_bcc);
         email_message = (EditText)findViewById(R.id.email_body);

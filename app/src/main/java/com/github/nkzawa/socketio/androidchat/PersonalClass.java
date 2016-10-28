@@ -6,7 +6,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import java.util.Objects;
 
 
@@ -21,7 +20,7 @@ public class PersonalClass extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.personal_details);
         Intent intent = getIntent();
-        String value = intent.getStringExtra("Austin");
+        String value = intent.getStringExtra("Contact");
         name = (TextView)findViewById(R.id.name);
         name.setText(value);
         // ------------------------------------ //

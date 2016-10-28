@@ -37,8 +37,17 @@ public class MainActivity extends ActionBarActivity {
         final String finalName = name;
         final String finalCategory = category;
         while(cursor.moveToNext()) {
-            name = cursor.getString(1);
+            // name = cursor.getString(1);
             category = cursor.getString(7);
+        }
+
+        final String send_this_name[] = new String[cursor.getCount()];
+        int i = 0;
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            send_this_name[i] = cursor.getString(1);
+            i++;
+            cursor.moveToNext();
         }
 
         /***********************************************
@@ -74,7 +83,7 @@ public class MainActivity extends ActionBarActivity {
                         .show();
                 // PersonalDetails view
                 Intent intent = new Intent(MainActivity.this, PersonalClass.class);
-                intent.putExtra("Austin", name); //Optional parameters
+                intent.putExtra("Contact", send_this_name); // Send name to Personal Details
                 MainActivity.this.startActivity(intent);
 
                 return false;
@@ -99,22 +108,29 @@ public class MainActivity extends ActionBarActivity {
         // Adding child data
         List<String> friends = new ArrayList<>();
 
-        for (int i = 0; i < name.length(); i++) {
-            friends.add(name);
+        dbHelper = new DBHelper(this);
+        final Cursor cursor = dbHelper.getAllRecords();
+        String array[] = new String[cursor.getCount()];
+        int i = 0;
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            array[i] = cursor.getString(1);
+            // ---------------- //
+            friends.add(array[i]);
+            // ---------------- //
+            i++;
+            cursor.moveToNext();
         }
-//        friends.add("Tukaram Bhagat");
-//        friends.add("Craig Nesty");
-//        friends.add("Veronne Nicholas");
-//        friends.add("Timothy Tavanier");
-//        friends.add("Al Parillon");
-//        friends.add("Chester Wyke");
-//        friends.add("Kerry");
 
         List<String> relatives = new ArrayList<>();
+        relatives.add("...");
+        relatives.add("...");
         relatives.add("...");
 
 
         List<String> others = new ArrayList<>();
+        others.add("...");
+        others.add("...");
         others.add("...");
 
         listDataChild.put(listDataHeader.get(0), friends); // Header, Child data
